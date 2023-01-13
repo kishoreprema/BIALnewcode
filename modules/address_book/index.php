@@ -799,7 +799,9 @@ function save_adress_book($smarty, $module_name, $local_templates_dir, $pDB, $pD
                             return new_adress_book($smarty, $module_name, $local_templates_dir, $pDB, $pDB_2, $arrConf, $dsn_agi_manager, $dsnAsterisk);
                     }
                     //realizar acciones
-                    if(!rename($ruta_archivo, $renameFile)){
+		    $rname = rename($ruta_archivo, $renameFile);
+                    if(!$rname){	
+                    //if(!rename($ruta_archivo, $renameFile)){
                         $smarty->assign("mb_title", _tr("ERROR"));
                         $smarty->assign("mb_message", _tr("Error to Upload") ." : ". $pictureUpload);
                         if($update)
